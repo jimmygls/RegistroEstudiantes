@@ -6,3 +6,23 @@
     </li>
   </ul>
 </div>
+<div>
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th class="text-center">Apellido</th>
+        <th class="text-center">IdPersona</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Tel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of objEstudiante">
+        <td class="text-center" style="width: 15px;">{{post.Apellido}}</td>
+        <td class="text-center" style="width: 15px;">{{post.IdPersona}}</td>
+        <td class="text-center" style="width: 200px;">{{post.Nombre}}</td>
+        <td class="text-center">{{post.Tel}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

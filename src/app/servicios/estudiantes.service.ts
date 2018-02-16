@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpModule, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import "rxjs/Rx";
+
 
 @Injectable()
 export class EstudiantesService {
 
-  public url: string;
-  data :any={};
-  
+  private url = "http://localhost:57255/api/Personas";
+  data: Array<string>;
+
   private ListaDeEstudiantes(universidad): Array<string> {
-   
     if (universidad == 'la universidad nacional') {
       return ['Jimmy numero uno', 'Pedro numero dos', 'Saulo numero tres'];
     }
@@ -19,18 +18,32 @@ export class EstudiantesService {
       return ['Estudiante para uno'];
     }
   }
-  
 
-  constructor(private http: HttpModule) {
-    this.url = "http://localhost:57255/api/";
+  constructor(private http: Http) {
   }
 
-  public getPersonas(universidad):Array<string>{
-   
+  public getPersonas(universidad): Array<string> {
+
     return this.ListaDeEstudiantes(universidad);
-    //this.http.get(this.url + 'Personas').map((res:Response)=> res.json());
+
   }
-  
+
+  getEstudiante(): Observable<itfFstudiante[]> {
+    return this.http.get(this.url).map((response: Response) => {
+      return <itfFstudiante[]>response.json();
+    }).catch(this.handleError);
+  }
+
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
+  }
+
 }
 
+export interface itfFstudiante {
+  Apellido: number;
+  IdPersona: number;
+  Nombre: string;
+  Tel: string;
+}
 
