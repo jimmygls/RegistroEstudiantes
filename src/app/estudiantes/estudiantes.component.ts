@@ -20,26 +20,16 @@ export class EstudiantesComponent implements OnInit {
     this.titulo = evento.target.value;
   }
 
-  listadeestudiantes(): Array<string> {
-    if (this.universidad == 'la universidad nacional') {
-      return ['Estudiante numero uno', 'Estudiante numero dos', 'Estudiante numero tres'];
-    }
-    else {
-      return ['Estudiante para uno'];
-    }
-
-  }
-
   clickEnEstudiante(evento): void {
     this.selecionado.emit({ nombre: evento.target.textContent });
   }
 
-  constructor(estudiantesSrvice:EstudiantesService) { 
-
-    this.estudiantes=estudiantesSrvice.ListaDeEstudiantes('la universidad nacional');
+  constructor(private estudiantesService:EstudiantesService) { 
+    console.log("llego el servicio")
+    //this.estudiantes=estudiantesService.ListaDeEstudiantes('la universidad nacional');
+    this.estudiantes=estudiantesService.getPersonas('la universidad nacional');
   }
 
   ngOnInit() {
   }
-
 }

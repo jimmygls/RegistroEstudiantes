@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class EstudiantesService {
 
-  ListaDeEstudiantes(universidad): Array<string> {
+  public url: string;
+  data :any={};
+  
+  private ListaDeEstudiantes(universidad): Array<string> {
+   
     if (universidad == 'la universidad nacional') {
       return ['Jimmy numero uno', 'Pedro numero dos', 'Saulo numero tres'];
     }
@@ -13,10 +20,17 @@ export class EstudiantesService {
     }
   }
   
-  constructor(private http: HttpModule) {}
-    
-  getEstudiante(){ 
-      //retunr this.http..get('api/Personas').toPromise()
-    }
-    
+
+  constructor(private http: HttpModule) {
+    this.url = "http://localhost:57255/api/";
   }
+
+  public getPersonas(universidad):Array<string>{
+   
+    return this.ListaDeEstudiantes(universidad);
+    //this.http.get(this.url + 'Personas').map((res:Response)=> res.json());
+  }
+  
+}
+
+
