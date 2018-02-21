@@ -8,6 +8,7 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { EstudiantesComponent } from './estudiantes/estudiantes.component';
 import { MenuizquierdoComponent } from './menuizquierdo/menuizquierdo.component';
 import { PiepaginaComponent } from './piepagina/piepagina.component';
+import { VideojuegosComponent } from './videojuegos/videojuegos.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PiepaginaComponent } from './piepagina/piepagina.component';
     EncabezadoComponent,
     EstudiantesComponent,
     MenuizquierdoComponent,
-    PiepaginaComponent
+    PiepaginaComponent,
+    VideojuegosComponent
   ],
   imports: [
     BrowserModule,
